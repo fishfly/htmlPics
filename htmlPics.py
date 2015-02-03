@@ -40,7 +40,7 @@ def makeHtml(subpath):
 		# html body
 		pics = os.listdir(subpath)
 		for i in pics:
-			f.write('<img src=\'' + i + '\'></img>\n')
+			f.write('<img src=\'' + i + '\'></img></br>\n')
 		
 		# html footer
 		f.write('</center>\n</body>\n</html>')

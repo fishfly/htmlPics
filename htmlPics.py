@@ -38,7 +38,12 @@ def makeHtml(subpath):
 		f.write('<html>\n<body>\n<center>\n')
 		
 		# html body
-		pics = os.listdir(subpath)
+		try:
+			pics = os.listdir(subpath)
+		except Exception, e:
+			print e
+			return
+		
 		for i in pics:
 			f.write('<img src=\'' + i + '\'></img></br>\n')
 		

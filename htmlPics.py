@@ -64,7 +64,7 @@ def checkLastDir(path):
 	
 	try:
 		items = os.listdir(path)
-	except Excepprint e:
+	except Exception, e:
 		print e
 		return
 

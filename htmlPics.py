@@ -54,7 +54,11 @@ def makeHtml(subpath):
 
 		return
 
-	items = os.listdir(subpath)
+	try:
+		items = os.listdir(subpath)
+	except Exception, e:
+		print e
+		return
 
 	for i in items:
 		subsubpath = subpath + "\\" + i

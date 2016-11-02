@@ -62,7 +62,11 @@ def makeHtml(subpath):
 
 def checkLastDir(path):
 	
-	items = os.listdir(path)
+	try:
+		items = os.listdir(path)
+	except Excepprint e:
+		print e
+		return
 
 	for i in items:
 		subpath = path + "\\" + i

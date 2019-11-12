@@ -1,5 +1,5 @@
 """
-Description: 	This is program is used for packing pictures into a html, 
+Description: 	This is program is used for packing pictures into a html,
 				thus we can read pics much easier.
 
 Author: 		whtcjdtc2007
@@ -17,10 +17,8 @@ def main():
 		return
 
 	path = sys.argv[1]
-	
-	for i in os.listdir(path):
-		subpath = path + "\\" + i
-		makeHtml(subpath)
+
+	makeHtml(path)
 
 def makeHtml(subpath):
 
@@ -30,23 +28,24 @@ def makeHtml(subpath):
 
 	if checkLastDir(subpath):
 		print subpath
-		
+
 		# make html book here
-		f = open(subpath + '\\pics.html','w')
-		
+		f = open(os.path.join(subpath, 'book.html'), 'w')
+
 		# html header
 		f.write('<html>\n<body>\n<center>\n')
-		
+
 		# html body
 		try:
 			pics = os.listdir(subpath)
+			pics.sort(key=sortAsInt)
 		except Exception, e:
 			print e
 			return
-		
+
 		for i in pics:
 			f.write('<img src=\'' + i + '\'></img></br>\n')
-		
+
 		# html footer
 		f.write('</center>\n</body>\n</html>')
 
@@ -61,11 +60,11 @@ def makeHtml(subpath):
 		return
 
 	for i in items:
-		subsubpath = subpath + "\\" + i
+		subsubpath = os.path.join(subpath, i)
 		makeHtml(subsubpath)
 
 def checkLastDir(path):
-	
+
 	try:
 		items = os.listdir(path)
 	except Exception, e:
@@ -73,10 +72,16 @@ def checkLastDir(path):
 		return
 
 	for i in items:
-		subpath = path + "\\" + i
+		subpath = os.path.join(path, i)
 		if os.path.isdir(subpath):
 			return False
 
 	return True
+
+def sortAsInt(val):
+	try:
+		return int(val)
+	except Exception as e:
+		pass
 
 main()

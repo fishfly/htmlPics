@@ -80,7 +80,7 @@ def checkLastDir(path):
 
 def sortAsInt(val):
 	try:
-		return int(val)
+		return int(val.split('.')[0])
 	except Exception as e:
 		pass
 
